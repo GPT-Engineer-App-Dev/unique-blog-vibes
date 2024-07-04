@@ -9,9 +9,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { Menu, Package2 } from "lucide-react";
+import { Menu, Package2, Sun, Moon } from "lucide-react"; // Import Sun and Moon icons
 import { NavLink, Outlet } from "react-router-dom";
 import { navItems } from "../App";
+import { useTheme } from "next-themes"; // Import useTheme hook
 
 const Layout = () => {
   return (
@@ -52,6 +53,7 @@ const DesktopNav = () => (
         {item.title}
       </NavItem>
     ))}
+    <ThemeToggle /> {/* Add ThemeToggle component */}
   </nav>
 );
 
@@ -80,6 +82,7 @@ const MobileNav = () => (
             {item.title}
           </NavItem>
         ))}
+        <ThemeToggle /> {/* Add ThemeToggle component */}
       </nav>
     </SheetContent>
   </Sheet>
@@ -101,5 +104,20 @@ const NavItem = ({ to, children, className }) => (
     {children}
   </NavLink>
 );
+
+const ThemeToggle = () => {
+  const { theme, setTheme } = useTheme();
+
+  return (
+    <Button
+      variant="outline"
+      size="icon"
+      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+    >
+      {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+      <span className="sr-only">Toggle theme</span>
+    </Button>
+  );
+};
 
 export default Layout;

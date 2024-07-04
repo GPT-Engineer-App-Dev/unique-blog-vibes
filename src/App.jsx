@@ -8,6 +8,7 @@ import About from "./pages/About.jsx";
 import Blog from "./pages/Blog.jsx";
 import Contact from "./pages/Contact.jsx";
 import AddPost from "./pages/AddPost.jsx";
+import { ThemeProvider } from "next-themes"; // Import ThemeProvider
 
 const queryClient = new QueryClient();
 
@@ -35,17 +36,19 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
-        <Router>
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<Index />} />
-              <Route path="about" element={<About />} />
-              <Route path="blog" element={<Blog />} />
-              <Route path="contact" element={<Contact />} />
-              <Route path="add-post" element={<AddPost />} />
-            </Route>
-          </Routes>
-        </Router>
+        <ThemeProvider attribute="class"> {/* Wrap the application with ThemeProvider */}
+          <Router>
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route index element={<Index />} />
+                <Route path="about" element={<About />} />
+                <Route path="blog" element={<Blog />} />
+                <Route path="contact" element={<Contact />} />
+                <Route path="add-post" element={<AddPost />} />
+              </Route>
+            </Routes>
+          </Router>
+        </ThemeProvider>
       </TooltipProvider>
     </QueryClientProvider>
   );
