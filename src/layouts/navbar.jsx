@@ -44,6 +44,9 @@ const DesktopNav = () => (
       <Package2 className="h-6 w-6" />
       <span>My Blog</span>
     </NavItem>
+    <NavItem to="/add-post" className="flex items-center gap-2 text-lg font-semibold md:text-base">
+      <span>Add Post</span>
+    </NavItem>
     {navItems.map((item) => (
       <NavItem key={item.to} to={item.to}>
         {item.title}
@@ -68,6 +71,9 @@ const MobileNav = () => (
         >
           <Package2 className="h-6 w-6" />
           <span>My Blog</span>
+        </NavItem>
+        <NavItem to="/add-post" className="flex items-center gap-2 text-lg font-semibold">
+          <span>Add Post</span>
         </NavItem>
         {navItems.map((item) => (
           <NavItem key={item.to} to={item.to}>
